@@ -1,0 +1,50 @@
+#### register a product 
+
+POST http://localhost:3000/products/createNewProduct
+content-type:application/json
+
+{
+  "product": {
+    "Title": "Nothing phone 1 cover",
+    "Price": "200",
+    "MRP": 504,
+    "Images": ["image1.jpg", "image2.jpg"],
+    "Colors": ["black", "white"]
+  }
+}
+
+### Add review
+POST  http://localhost:3000/products/addReview
+content-type:application/json
+
+{
+  "content": "Awesome, worth buying",
+  "productId": "63cf981774325b6318e8a017",
+  "username": "Shubham Panchal",
+  "rating": 4
+}
+### Get product with reviews
+
+POST http://localhost:3000/products/getProductWithReviewsWithId
+content-type:application/json
+
+{
+  "product":{
+    "_id":"63cf981774325b6318e8a017"
+  }
+}
+
+
+### POST Seller
+
+POST  http://localhost:3000/vendor/register
+content-type:application/json
+
+{
+  "name": "A1 mobile accesories",
+  "phoneNumber": 8168260313,
+  "category": "mobile accessories",
+  "city": "Karnal",
+  "address": "new char gali no. 20",
+  "unwantedField":"Unwanted field"
+  }  
