@@ -1,18 +1,19 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { ProductModule } from './product/product.module';
-import { ProductService } from './product/product.service';
 import { VendorModule } from './vendor/vendor.module';
-
+import { AuthModule } from './auth/auth.module';
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     VendorModule,
     ProductModule,
     MongooseModule.forRoot(
-      'mongodb+srv://shubham:shubhhustler321@cluster0.m5jme0b.mongodb.net/?retryWrites=true&w=majority',
+      process.env.MONGODB_CONN_URI
     ),
+    AuthModule,
   ],
   controllers: [AppController],
   // providers: [AppService,ProductService],

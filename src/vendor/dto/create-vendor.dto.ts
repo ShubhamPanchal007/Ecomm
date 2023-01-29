@@ -1,10 +1,11 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsNumber, IsString, Matches } from 'class-validator';
 export class CreateVendorDto {
   @IsString()
   name: String;
 
-  @IsNumber()
-  phoneNumber: Number
+  @IsString()
+  @Matches(/^\+[1-9]\d{1,14}$/)
+  phoneNumber: String
 
   @IsString()
   category: String;

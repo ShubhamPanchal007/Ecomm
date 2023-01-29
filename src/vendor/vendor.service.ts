@@ -9,15 +9,19 @@ export class VendorService {
   constructor(
     @InjectModel(Vendor.name) private vendorModal: Model<VendorDocument>,
   ) {}
+
   async registerVendor(vendor: CreateVendorDto) {
-    const user = await this.vendorModal.findOne({
-      phoneNumber: vendor.phoneNumber,
-    });
+    const user = this.findVendorByPhoneNumber(vendor.phoneNumber);
     if (!user) {
       const newVendor = new this.vendorModal(vendor);
       return await newVendor.save();
     } else {
       throw new HttpException('User already exists', HttpStatus.CONFLICT);
     }
+  }
+
+  async findVendorByPhoneNumber(phoneNumber: String): Promise<Vendor> {
+    const vendor = await this.vendorModal.findOne({ phoneNumber });
+    return vendor;
   }
 }

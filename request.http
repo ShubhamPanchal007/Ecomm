@@ -48,3 +48,32 @@ content-type:application/json
   "address": "new char gali no. 20",
   "unwantedField":"Unwanted field"
   }  
+
+
+##### Login 
+
+POST  http://localhost:3000/auth/login
+content-type:application/json
+
+{
+  "phoneNumber": "+918168260313"
+}  
+  
+##### Verify
+POST  http://localhost:3000/auth/verify
+content-type:application/json
+
+{
+  "phoneNumber": "+918168260313",
+  "verificationCode":"779237"
+}  
+
+### visiting a protected route
+
+Get http://localhost:3000/auth/dashboard/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc0OTgxNjY1LCJleHAiOjE2NzQ5ODUyNjV9.XTa9zdI53WmkHUbe2C8lpXe6sYmQ17BA3sftNnWxSd0
+
+### visiting a protected route in of some other module 
+
+Get http://localhost:3000/vendor/sensitive
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc0OTgxNjY1LCJleHAiOjE2NzQ5ODUyNjV9.XTa9zdI53WmkHUbe2C8lpXe6sYmQ17BA3sftNnWxSd0
