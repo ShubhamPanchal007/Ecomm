@@ -37,4 +37,17 @@ export class ProductService {
     // Also it would be good to note that according to the benchmark results the find method works faster than populate by a very small diffrence in ms.
     return this.PhoneAccessorieModal.findById(id).populate('reviews').exec();
   }
+  async retrieveAllProductsOfVendor(vendorID: String) {
+    const products = await this.PhoneAccessorieModal.find({
+      vendorID
+    });
+    return products;
+  }
+
+  async findProductByID(id,productUpdateDto){
+    // By default, findOneAndUpdate() returns the document as it was before update was applied.
+      const product = await this.PhoneAccessorieModal.findOneAndUpdate({vendorID:id},productUpdateDto,{new:true,/*if passed -->,overwrite: true then our patch request would become a put request*/})
+      return product
+
+  }
 }

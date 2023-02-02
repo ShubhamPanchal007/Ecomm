@@ -1,16 +1,17 @@
 #### register a product 
 
-POST http://localhost:3000/products/createNewProduct
+POST http://localhost:3000/vendor/addNewProduct
 content-type:application/json
 
 {
-  "product": {
-    "Title": "Nothing phone 1 cover",
-    "Price": "200",
+  
+    "title": "Nothing phone 1 cover",
+    "price": "200",
     "MRP": 504,
-    "Images": ["image1.jpg", "image2.jpg"],
-    "Colors": ["black", "white"]
-  }
+    "description":"Hard non-yellowing nothing phone(1) cover",
+    "images": ["image1.jpg", "image2.jpg"],
+ "vendorID":"+918168260313"
+  
 }
 
 ### Add review
@@ -77,3 +78,21 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4M
 
 Get http://localhost:3000/vendor/sensitive
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc0OTgxNjY1LCJleHAiOjE2NzQ5ODUyNjV9.XTa9zdI53WmkHUbe2C8lpXe6sYmQ17BA3sftNnWxSd0
+
+#### Find all uploaded products of vendor
+# when one uses query object for this same task the +, digit i don't actually get sent but an empty space on the place of it.  
+POST  http://localhost:3000/vendor/retrieveAllProducts
+content-type:application/json
+
+{
+  "vendorID":"+918168260313"
+}
+
+
+#### Vendor Update a product 
+PATCH   http://localhost:3000/vendor/updateProduct/+918168260313
+content-type:application/json
+
+{
+  "title":"Non-Yellowing Hard Nothing Phone(1) Cover"
+}
