@@ -5,7 +5,6 @@ import { Model } from 'mongoose';
 import { CreateVendorDto } from './dto/create-vendor.dto';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { ProductService } from '../product/product.service';
-import { throwError } from 'rxjs';
 @Injectable()
 export class VendorService {
   constructor(
@@ -28,18 +27,25 @@ export class VendorService {
     return vendor;
   }
 
+  async findVendorByID(id: String): Promise<Vendor> {
+    const vendor = await this.vendorModal.findById({ id });
+    return vendor;
+  }
+
   addProduct(productDto: any) {
     try {
       return this.productService.createProduct(productDto);
     } catch (error) {
-      throw Error(error.message)
+      throw Error(error.message);
     }
   }
+
   async retrieveAllProductsOfVendor(vendorID: any) {
-    return await this.productService.retrieveAllProductsOfVendor(vendorID );
+    return await this.productService.retrieveAllProductsOfVendor(vendorID);
   }
-  async updateAProduct(id,productUpdateDto){
-    console.log(id)
-     return await this.productService.findProductByID(id,productUpdateDto)
+
+  async updateAProduct(id, productUpdateDto) {
+    console.log(id);
+    return await this.productService.findProductByID(id, productUpdateDto);
   }
 }

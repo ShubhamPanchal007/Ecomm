@@ -1,8 +1,9 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { HydratedDocument,  } from 'mongoose';
 import { Review } from './review.schema';
 // The export type UserDocument = HydratedDocument<Users> creates a type UserDocument which is an interface that describes a Mongoose document that has been "hydrated" with any virtuals, getters, setters, and methods defined on the associated Mongoose schema.
 export type PhoneAccessoriesDocument = HydratedDocument<PhoneAccessorie>;
+
 
 @Schema()
 export class PhoneAccessorie {
@@ -24,10 +25,31 @@ export class PhoneAccessorie {
   @Prop({ required: true })
   vendorID: string;
   // The ref property is used to specify that the Review property is a reference to another collection, in this case, the Review collection. This means that the Review property will contain an array of ObjectIds that reference the documents in the Review collection.
+  
   @Prop({
     ref: 'Review',
+    required:false
   })
-  reviews: [Review];
+  
+  reviews?: [Review];
+
+  @Prop({
+    type: {
+      type: String,
+      enum: ['Point'],
+    },
+
+    coordinates: {
+      type: [Number],
+      index: '2dsphere',
+    },
+  })
+
+  location: {
+    type: String;
+    coordinates: number[];
+  };
+  
 }
 
 export const PhoneAccessoriesSchema =

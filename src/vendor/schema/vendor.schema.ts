@@ -27,6 +27,9 @@ export class Vendor {
     default: VendorStatus.InActive,
   })
   status: VendorStatus;
+
+  @Prop({required:true})
+  coordinates:[]
 }
 
 export const VendorSchema = SchemaFactory.createForClass(Vendor);

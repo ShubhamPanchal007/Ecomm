@@ -2,19 +2,23 @@
 
 POST http://localhost:3000/vendor/addNewProduct
 content-type:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc2MDk5OTk4LCJleHAiOjE2NzYxMDM1OTh9.iVf04513flhdUb5ENXywMzw_8s0nvfNPCLl0zUMrjBU
 
 {
-  
-    "title": "Nothing phone 1 cover",
-    "price": "200",
-    "MRP": 504,
-    "description":"Hard non-yellowing nothing phone(1) cover",
+    "title": "Nokia P30 lumia cover",
+    "price": "499",
+    "MRP": 500,
+    "description":"Best High Quality Nokia P30 lumia cover",
     "images": ["image1.jpg", "image2.jpg"],
- "vendorID":"+918168260313"
-  
+ "vendorID":"+918168260313",
+ "location": {
+    "type": "Point",
+    "coordinates": [29.3,72.2]
+  }
 }
 
 ### Add review
+
 POST  http://localhost:3000/products/addReview
 content-type:application/json
 
@@ -24,6 +28,7 @@ content-type:application/json
   "username": "Shubham Panchal",
   "rating": 4
 }
+
 ### Get product with reviews
 
 POST http://localhost:3000/products/getProductWithReviewsWithId
@@ -61,18 +66,19 @@ content-type:application/json
 }  
   
 ##### Verify
+
 POST  http://localhost:3000/auth/verify
 content-type:application/json
 
 {
   "phoneNumber": "+918168260313",
-  "verificationCode":"779237"
+  "verificationCode":"475287"
 }  
 
 ### visiting a protected route
 
 Get http://localhost:3000/auth/dashboard/protected
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc0OTgxNjY1LCJleHAiOjE2NzQ5ODUyNjV9.XTa9zdI53WmkHUbe2C8lpXe6sYmQ17BA3sftNnWxSd0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc2MDk5OTk4LCJleHAiOjE2NzYxMDM1OTh9.iVf04513flhdUb5ENXywMzw_8s0nvfNPCLl0zUMrjBU
 
 ### visiting a protected route in of some other module 
 
@@ -80,9 +86,12 @@ Get http://localhost:3000/vendor/sensitive
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc0OTgxNjY1LCJleHAiOjE2NzQ5ODUyNjV9.XTa9zdI53WmkHUbe2C8lpXe6sYmQ17BA3sftNnWxSd0
 
 #### Find all uploaded products of vendor
+
 # when one uses query object for this same task the +, digit i don't actually get sent but an empty space on the place of it.  
+
 POST  http://localhost:3000/vendor/retrieveAllProducts
 content-type:application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc2MDk5OTk4LCJleHAiOjE2NzYxMDM1OTh9.iVf04513flhdUb5ENXywMzw_8s0nvfNPCLl0zUMrjBU
 
 {
   "vendorID":"+918168260313"

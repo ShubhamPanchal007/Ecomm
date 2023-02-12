@@ -1,14 +1,13 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
   UseGuards,
-  Query,
   Patch,
   Param,
 } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/guards/auth.guard';
+import { PhoneAccessorieDto } from 'src/product/dto/create-phoneAccessorie.dto';
 import { CreateVendorDto } from './dto/create-vendor.dto';
 import { VendorService } from './vendor.service';
 
@@ -23,7 +22,7 @@ export class VendorController {
 
   @UseGuards(AuthGuard)
   @Post('/addNewProduct')
-  addProduct(@Body() productDto: any) {
+  addProduct(@Body() productDto: PhoneAccessorieDto) {
     return this.vendorService.addProduct(productDto);
   }
 

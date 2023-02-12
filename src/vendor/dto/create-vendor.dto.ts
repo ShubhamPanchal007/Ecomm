@@ -1,4 +1,4 @@
-import { IsNumber, IsString, Matches } from 'class-validator';
+import { IsArray, IsNumber, IsString, Matches } from 'class-validator';
 export class CreateVendorDto {
   @IsString()
   name: String;
@@ -15,4 +15,7 @@ export class CreateVendorDto {
 
   @IsString()
   address: String;
+
+  @IsArray()
+  coordinates: number[];
 }
