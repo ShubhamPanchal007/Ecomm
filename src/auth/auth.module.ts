@@ -4,7 +4,7 @@ import { AuthController } from './auth.controller';
 import { ProductModule } from 'src/product/product.module';
 import { ConfigModule } from '@nestjs/config';
 import { VendorModule } from 'src/vendor/vendor.module';
-
+// https://docs.nestjs.com/fundamentals/dynamic-modules
 @Module({
   imports: [
     ConfigModule.forRoot({

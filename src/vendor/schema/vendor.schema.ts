@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
-import { type } from 'os';
-import { VendorStatus } from './vendor.enum';
+import { role } from '../../../utils/utils.enum';
 export type VendorDocument = HydratedDocument<Vendor>;
 
 @Schema()
@@ -10,7 +9,7 @@ export class Vendor {
   name: String;
 
   @Prop()
-  phoneNumber: Number;
+  phoneNumber: String;
 
   @Prop()
   category: String;
@@ -23,13 +22,13 @@ export class Vendor {
 
   @Prop({
     type: String,
-    enum: VendorStatus,
-    default: VendorStatus.InActive,
+    enum: role,
+    default: role.VENDOR,
   })
-  status: VendorStatus;
+  role: role;
 
-  @Prop({required:true})
-  coordinates:[]
+  @Prop({ required: true })
+  coordinates: [];
 }
 
 export const VendorSchema = SchemaFactory.createForClass(Vendor);

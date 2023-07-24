@@ -11,7 +11,7 @@ export class AuthService {
   private jwtSecret = process.env.jwtSecretKey;
   constructor(private vendorsService: VendorService) {}
 
-  async login(userDto: any) {
+  async sendOtp(userDto: any) {
     // Send OTP via SMS
     return this.twilioClient.verify.v2
       .services(process.env.serviceSid)
@@ -21,21 +21,20 @@ export class AuthService {
       });
   }
 
-  async verify(userDto: any) {
+  async verifyOtp(userDto: any) {
     const result = await this.twilioClient.verify.v2
       .services(process.env.serviceSid)
       .verificationChecks.create({
         to: userDto.phoneNumber,
-        code: userDto.verificationCode,
+        code: userDto.otp,
       });
     if (!result.valid || result.status !== 'approved') {
       throw new BadRequestException('Wrong code provided');
     }
     // Return a jwt token
-    const token = jwt.sign({ userId: userDto.phoneNumber }, this.jwtSecret, {
+    const token = jwt.sign({ userId: userDto.phoneNumber,userRole: userDto.roles }, this.jwtSecret, {
       expiresIn: '1h',
     });
-
     return token;
   }
 }

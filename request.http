@@ -58,7 +58,7 @@ content-type:application/json
 
 ##### Login 
 
-POST  http://localhost:3000/auth/login
+POST  http://localhost:3000/auth/sendOtp
 content-type:application/json
 
 {
@@ -67,24 +67,23 @@ content-type:application/json
   
 ##### Verify
 
-POST  http://localhost:3000/auth/verify
+POST  http://localhost:3000/user/login
 content-type:application/json
 
 {
   "phoneNumber": "+918168260313",
-  "verificationCode":"475287"
+  "otp":"368372",
+  "roles":["customer"]
 }  
 
 ### visiting a protected route
 
 Get http://localhost:3000/auth/dashboard/protected
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc2MDk5OTk4LCJleHAiOjE2NzYxMDM1OTh9.iVf04513flhdUb5ENXywMzw_8s0nvfNPCLl0zUMrjBU
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwidXNlclJvbGUiOlsiY3VzdG9tZXIiXSwiaWF0IjoxNjg5Nzc1MDI5LCJleHAiOjE2ODk3Nzg2Mjl9.7816tHTvP66IkaoMJij7zeVmjjwQl6Udn8mHlPpXq78
 ### visiting a protected route in of some other module 
 
 Get http://localhost:3000/vendor/sensitive
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwiaWF0IjoxNjc0OTgxNjY1LCJleHAiOjE2NzQ5ODUyNjV9.XTa9zdI53WmkHUbe2C8lpXe6sYmQ17BA3sftNnWxSd0
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIrOTE4MTY4MjYwMzEzIiwidXNlclJvbGUiOlsiY3VzdG9tZXIiXSwiaWF0IjoxNjg5Nzc1MDI5LCJleHAiOjE2ODk3Nzg2Mjl9.NG5MXq-4PWglyVCMC69ql477lYEe47AF1DONHQ2H6Y
 #### Find all uploaded products of vendor
 
 # when one uses query object for this same task the +, digit i don't actually get sent but an empty space on the place of it.  

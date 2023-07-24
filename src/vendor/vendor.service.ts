@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { CreateVendorDto } from './dto/create-vendor.dto';
 import { HttpException, HttpStatus } from '@nestjs/common';
 import { ProductService } from '../product/product.service';
+import { status } from 'utils/utils.enum';
 @Injectable()
 export class VendorService {
   constructor(
@@ -48,4 +49,8 @@ export class VendorService {
     console.log(id);
     return await this.productService.findProductByID(id, productUpdateDto);
   }
+
+  // async activateVendor(id:String, ) {
+  //   return await this.vendorModal.findByIdAndUpdate(id, { status: status.Active });
+  // }
 }

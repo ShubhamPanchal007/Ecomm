@@ -27,6 +27,7 @@ export class AuthGuard implements CanActivate {
 
     try {
       const decoded = await jwt.verify(token, this.jwtSecretKey);
+      
       return decoded;
     } catch (err) {
       const message = 'Token error: ' + (err.message || err.name);

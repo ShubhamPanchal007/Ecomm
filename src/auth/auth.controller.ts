@@ -1,20 +1,24 @@
 import { Controller, Post, Body, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthGuard } from './guards/auth.guard';
+import { RolesGuard } from './guards/roles.guard';
+import { hasRoles } from './decorators/roles.decorator';
+import { role } from 'utils/utils.enum';
 
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-  @Post('login')
+  @Post('sendOtp')
   postNumber(@Body() user: any) {
-    return this.authService.login(user);
+    return this.authService.sendOtp(user);
   }
-  @Post('verify')
+  @Post('verifyOtp')
   verify(@Body() userDto: any) {
-    return this.authService.verify(userDto);
+    return this.authService.verifyOtp(userDto);
   }
   // A sample protected route to test.
-  @UseGuards(AuthGuard)
+  @hasRoles(role.VENDOR)
+  @UseGuards(AuthGuard,RolesGuard)
   @Get('dashboard/protected')
   dashboard() {
     return 'Dashboard content';
